@@ -4,6 +4,11 @@ An intelligent product recommendation system that scrapes live listings from eBa
 
 ---
 
+## Some Glimps
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/3d2678c9-66b2-410b-a94f-25c9eda1228e" />
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/f8443577-d54c-4ed4-bb51-e7832ff56cb6" />
+
+
 ## 🚀 Features
 
 - **Live eBay Web Scraping**: Scrapes active eBay listings dynamically using Playwright in headless mode (extracting titles, prices, conditions, image URLs, and item page links).
