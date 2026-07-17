@@ -2,11 +2,13 @@
 
 An intelligent product recommendation system that scrapes live listings from eBay in real-time and uses Machine Learning to recommend similar products. Built using **Streamlit**, **Playwright**, and **scikit-learn**.
 
----
+## 📸 UI Glimpses
 
-## Some Glimps
-<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/3d2678c9-66b2-410b-a94f-25c9eda1228e" />
-<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/f8443577-d54c-4ed4-bb51-e7832ff56cb6" />
+Here is a showcase of the Streamlit dashboard in action:
+
+| 🔍 Search & Live Scrape | 📊 Recommendation Similarity Details |
+|:---:|:---:|
+| <img src="https://github.com/user-attachments/assets/3d2678c9-66b2-410b-a94f-25c9eda1228e" width="100%" alt="Search & Scrape Page" /> | <img src="https://github.com/user-attachments/assets/f8443577-d54c-4ed4-bb51-e7832ff56cb6" width="100%" alt="Recommendations & Similarity Details" /> |
 
 
 ## 🚀 Features
