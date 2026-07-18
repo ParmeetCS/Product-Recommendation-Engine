@@ -30,26 +30,18 @@ def load_recommender(product_name=""):
     return df, similarity_matrix, vectorizer
 
 def recommend(product_name, top_n=5):
-    try:
-        df, similarity_matrix, vectorizer = load_recommender(product_name)
-    except Exception as e:
-        print(f"Error loading recommender data: {e}")
-        return None
+    df, similarity_matrix, vectorizer = load_recommender(product_name)
+    if df.empty:
+        return []
 
     product_name_clean = clean_text(product_name.lower().strip())
     if not product_name_clean:
-        return None
-    try:
-        query_vector = vectorizer.transform([product_name_clean])
-        feature_vectorized = vectorizer.transform(df["Features"])
-        query_similarities = cosine_similarity(query_vector, feature_vectorized).flatten().tolist()
-        product_index = query_similarities.index(max(query_similarities))
-    except Exception as e:
-        matched = df[df['Title'].str.lower().str.contains(product_name_clean)]
-        if not matched.empty:
-            product_index = matched.index[0]
-        else:
-            product_index = 0
+        return []
+
+    query_vector = vectorizer.transform([product_name_clean])
+    feature_vectorized = vectorizer.transform(df["Features"])
+    query_similarities = cosine_similarity(query_vector, feature_vectorized).flatten().tolist()
+    product_index = query_similarities.index(max(query_similarities))
 
     similarity_scores = list(
         enumerate(similarity_matrix[product_index])

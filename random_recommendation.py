@@ -1,12 +1,8 @@
-from requests import request
 import pandas as pd
-import os
 from pathlib import Path
 import random
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-import requests
-import os
 
 def get_combined_data():
     """
@@ -18,14 +14,10 @@ def get_combined_data():
         return pd.DataFrame()
     
     dfs = []
-    for file in folder.iterdir():
-        if file.is_file() and file.suffix == ".csv":
-            try:
-                temp_df = pd.read_csv(file)
-                if not temp_df.empty:
-                    dfs.append(temp_df)
-            except Exception as e:
-                print(f"Error reading {file}: {e}")
+    for file in folder.glob("*.csv"):
+        temp_df = pd.read_csv(file)
+        if not temp_df.empty:
+            dfs.append(temp_df)
                 
     if not dfs:
         return pd.DataFrame()
