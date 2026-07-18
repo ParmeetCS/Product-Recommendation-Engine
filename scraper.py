@@ -103,9 +103,12 @@ def scrapping(product_name):
         browser.close()
         df = pd.DataFrame(product)
         file_name = f"data/Ebay_{product_name}.csv"
-        
-        df.to_csv(file_name, index=False)
-        print(df.head())
+
+        if df.empty:
+            print(f"No products found for '{product_name}'. CSV not saved.")
+        else:
+            df.to_csv(file_name, index=False)
+            print(df.head())
 
 if __name__ == "__main__":
     import sys

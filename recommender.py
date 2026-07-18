@@ -16,8 +16,14 @@ def load_recommender(product_name=""):
     file_name = f"data/Ebay_{product_name}.csv"
     if not product_name or not os.path.exists(file_name):
         file_name = "ebay_product_list.csv"
-        
-    df = pd.read_csv(file_name)
+
+    try:
+        df = pd.read_csv(file_name)
+    except (pd.errors.EmptyDataError, pd.errors.ParserError):
+        return pd.DataFrame(), None, None
+
+    if df.empty or "Title" not in df.columns:
+        return pd.DataFrame(), None, None
 
     df = df.drop_duplicates(subset=["Title", "URL"], keep="first").reset_index(drop=True)
     df['CleanTitle'] = df['Title'].fillna("").apply(clean_text)
@@ -31,7 +37,7 @@ def load_recommender(product_name=""):
 
 def recommend(product_name, top_n=5):
     df, similarity_matrix, vectorizer = load_recommender(product_name)
-    if df.empty:
+    if similarity_matrix is None or df.empty:
         return []
 
     product_name_clean = clean_text(product_name.lower().strip())
